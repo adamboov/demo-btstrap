@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>BootStrap后台</title>
+    <link rel="apple-touch-icon-precomposed" href="https://cdn.jsdelivr.net/npm/@bootcss/www.bootcss.com@0.0.3/dist/ico/apple-touch-icon-precomposed.png">
+    <link rel="shortcut icon" href="https://cdn.jsdelivr.net/npm/@bootcss/www.bootcss.com@0.0.3/dist/ico/favicon.ico">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <nav class=" navbar navbar-inverse navbar-fixed-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button class="navbar-toggle collapsed" data-toggle="collapse" data-target="#info">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" src="index.html">
+                    <img src="img/frozenformations12.jpg" alt="BootStrap后台" style="width: 30px;border-radius: 5px;">
+                </a>
+                <a class="navbar-brand" src="index.html">后台管理</a>
+            </div>
+            <div id="info" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">admin<span
+                                class="caret"></span></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="info.html">个人资料</a></li>
+                            <li class="divider"></li>
+                            <li><a href="login.html">退出</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid" style="margin-top: 50px;">
+        <div class="row col-xs-2">
+            <nav class="row navbar-default">
+                <ul class="nav">
+                    <li>
+                        <a class="col-xs-offset-1 " href="index.html"><i class="glyphicon glyphicon-home"></i>
+                            首页</a>
+                    </li>
+                    <li>
+                        <a class="col-xs-offset-1" href="config.html"><i class="glyphicon glyphicon-cog"></i> 网站配置</a>
+                    </li>
+                    <li>
+                        <a class="col-xs-offset-1" href="admin.html"><i class="glyphicon glyphicon-user"></i>
+                            管理员</a>
+                    </li>
+                    <li>
+                        <a class="col-xs-offset-1 text-muted" href="list.html"><i class="glyphicon glyphicon-list"></i> 商品列表</a>
+                    </li>
+                    <li>
+                        <a class="col-xs-offset-1" href="user.html"><i class="glyphicon glyphicon-picture"></i> 用户列表</a>
+                    </li>
+                </ul>
+            </nav>
+        </div>
+        <div class="col-xs-10">
+            <div class="container-fluid">
+                <ol class="breadcrumb">
+                    <li><a href="index.html">首页</a></li>
+                    <li class="active">商品列表</li>
+                </ol>
+                <form class="form-inline col-xs-6" action="list.html" method="get">
+                    <div class="form-group">
+                        <select name="s" id="" class="form-control">
+                            <option value="1">标题</option>
+                            <option value="2">价格</option>
+                        </select>
+                        <input type="text" class="form-control" name="k" placeholder="请输入关键词">
+                        <button class="btn btn-primary" type="submit">搜索</button>
+                    </div>
+                </form>
+                <button class="btn btn-success pull-right" data-toggle="modal" data-target="#add">新增商品</button>
+                <div class="clearfix"></div>
+                <table class="table table-striped table-bordered" style="margin-top: 20px;">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>标题</th>
+                            <th>原价</th>
+                            <th>现价</th>
+                            <th>状态</th>
+                            <th>添加时间</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>adam</td>
+                            <td>adam</td>
+                            <td>123456</td>
+                            <td><span class="text-success">ON</span></td>
+                            <td class="center">2018-12-30 19:00</td>
+                            <td>
+                                <button class="btn btn-success btn-xs" data-toggle="modal" data-target="#edit" onclick="edit('adam','adam','12345','1')">修改</button>
+                                <button class="btn btn-danger btn-xs" data-toggle="modal" data-target="#del" onclick="del(1)">删除</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <nav class="text-center">
+                    <ul class="pagination">
+                        <li class="disabled"><a><span>&laquo;</span></a></li>
+                        <li class="active"><a>1</a></li>
+                        <li><a>2</a></li>
+                        <li><a><span>&raquo;</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="add">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">新增商品</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>标题</label>
+                        <input type="text" name="account" class="form-control" placeholder="请输入标题">
+                    </div>
+                    <div class="form-group">
+                        <label>商品图</label>
+                        <input type="file" name="img" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>原价</label>
+                        <input type="text" name="oprice" class="form-control" placeholder="请输入原价">
+                    </div>
+                    <div class="form-group">
+                        <label>现价</label>
+                        <input type="text" name="nprice" class="form-control" placeholder="请输入现价">
+                    </div>
+
+                    <div class="form-group">
+                        <label>状态</label>
+                        <select name="status" class="form-control">
+                            <option value="1">上架中</option>
+                            <option value="0">下架</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-success">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="edit">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">修改商品</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>标题</label>
+                        <input type="text" id="edit_title" name="edit_title" class="form-control" placeholder="请输入账号" value="admin">
+                    </div>
+                    <div class="form-group">
+                        <label>商品图</label>
+                        <input type="file" name="edit_img" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label>原价</label>
+                        <input type="text" id="edit_oprice" name="edit_oprice" class="form-control" placeholder="请输入原价">
+                    </div>
+                    <div class="form-group">
+                        <label>现价</label>
+                        <input type="text" id="edit_nprice" name="edit_nprice" class="form-control" placeholder="请输入现价">
+                    </div>
+                    <div class="form-group">
+                        <label>状态</label>
+                        <select name="status" id="edit_status" class="form-control">
+                                <option value="1">上架中</option>
+                                <option value="0">下架</option>
+                            </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-success">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="del">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">删除管理员</h4>
+                </div>
+                <div class="modal-body">
+                    <p id="body">确定删除？</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-default" data-dismiss="modal">关闭</button>
+                    <button class="btn btn-success">确定</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+<script type="text/javascript">
+    function edit(edit_title, edit_oprice, edit_nprice, edit_status) {
+        $("#edit_title").val(edit_title);
+        $("#edit_oprice").val(edit_oprice);
+        $("#edit_nprice").val(edit_nprice);
+        $("#edit_status").val(edit_status);
+        console.log(edit_title, edit_oprice, edit_nprice, edit_status);
+
+    }
+
+    function del(id) {
+        $("#body").text('确定删除第' + id + '条？');
+    }
+</script>
+
+</html>
